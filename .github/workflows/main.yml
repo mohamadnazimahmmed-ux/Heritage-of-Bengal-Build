@@ -25,6 +25,17 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Request Activation File
+        uses: game-ci/unity-request-activation-file@v2
+        if: always()
+
+      - name: Upload Activation File
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: activation-file
+          path: ${{ steps.request-activation.outputs.filePath }}
+
       - name: Activate Unity License
         uses: game-ci/unity-activate@v2
         env:
