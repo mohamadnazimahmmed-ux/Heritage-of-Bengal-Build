@@ -26,7 +26,7 @@ jobs:
           java-version: '17'
 
       - name: Activate Unity License
-        uses: game-ci/unity-license-activation@v2
+        uses: game-ci/unity-activate@v2
         with:
           username: ${{ secrets.UNITY_EMAIL }}
           password: ${{ secrets.UNITY_PASSWORD }}
