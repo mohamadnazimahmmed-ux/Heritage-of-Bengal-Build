@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          path: UnityProject
 
       - name: Setup Java
         uses: actions/setup-java@v4
@@ -42,13 +44,14 @@ jobs:
         with:
           unityVersion: ${{ env.UNITY_VERSION }}
           targetPlatform: Android
+          buildFolder: UnityProject
         continue-on-error: true
 
       - name: Check build output
         run: |
-          if [ -d "Build/Android" ]; then
+          if [ -d "UnityProject/Build/Android" ]; then
             echo "Build directory exists"
-            ls -la Build/Android/
+            ls -la UnityProject/Build/Android/
           else
             echo "Build directory not found"
             echo "This may be a license issue - verify UNITY_SERIAL is valid"
@@ -59,7 +62,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: apk
-          path: Build/Android/*.apk
+          path: UnityProject/Build/Android/*.apk
 
   check-license:
     runs-on: ubuntu-latest
