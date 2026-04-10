@@ -31,13 +31,6 @@ jobs:
           username: ${{ secrets.UNITY_EMAIL }}
           password: ${{ secrets.UNITY_PASSWORD }}
           serial: ${{ secrets.UNITY_SERIAL }}
-        if: secrets.UNITY_EMAIL != ''
-
-    - name: Create manual Activation File
-        if: secrets.UNITY_EMAIL == ''
-        run: |
-          echo "No Unity license configured - using manual workflow"
-          echo "To fix license errors: Add UNITY_EMAIL, UNITY_PASSWORD, UNITY_SERIAL secrets to repository"
 
       - name: Setup Unity
         uses: game-ci/unity-builder@v4
