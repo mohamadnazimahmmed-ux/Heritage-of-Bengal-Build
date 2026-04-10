@@ -37,7 +37,7 @@ jobs:
         with:
           unityVersion: ${{ env.UNITY_VERSION }}
           targetPlatform: Android
-          projectPath: UnityProject
+          projectPath: UnityProject/
         continue-on-error: true
 
       - name: Check build output
